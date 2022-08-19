@@ -11,22 +11,7 @@ const decrementBtn = document.getElementById("decrementBtn");
 let count = 0;
 
 /* ----------------------------- 
-    handle events
---------------------------------*/
-incrementBtn.addEventListener("click", () => {
-  count++;
-  counterResult.innerText = count;
-  checkCounter();
-});
-
-decrementBtn.addEventListener("click", () => {
-  count--;
-  counterResult.innerText = count;
-  checkCounter();
-});
-
-/* ----------------------------- 
-    conditions
+    all common functions
 --------------------------------*/
 const checkCounter = () => {
   if (count === 0) {
@@ -35,4 +20,32 @@ const checkCounter = () => {
     decrementBtn.style.display = "inline";
   }
 };
+
+const calculation = (type) => {
+  if (type === "increment") {
+    count++;
+  } else if (type === "decrement") {
+    count--;
+  } else {
+    count = 0;
+  }
+  counterResult.innerText = count;
+};
+
+/* ----------------------------- 
+    call function first time 
+--------------------------------*/
 checkCounter();
+
+/* ----------------------------- 
+    handle events
+--------------------------------*/
+incrementBtn.addEventListener("click", () => {
+  calculation("increment");
+  checkCounter();
+});
+
+decrementBtn.addEventListener("click", () => {
+  calculation("decrement");
+  checkCounter();
+});
